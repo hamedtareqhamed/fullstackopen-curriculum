@@ -432,5 +432,43 @@
         "É verdade. Se você completar o curso com todos os créditos e completar o trabalho prático com 10 créditos, você consegue uma entrevista de emprego com nossos parceiros. Leia mais <a href='/ptbr/part0/informacoes_gerais#promessa-de-entrevista'>aqui</a>. Você precisa residir na Finlândia para participar dessas entrevistas."
       ]
     }
+  ],
+  "ar": [
+    {
+      "title": "ما هي المتطلبات الأساسية للدورة؟",
+      "text": [
+        "يُشترط الإلمام بأساسيات البرمجة وقواعد البيانات، ومعرفة بالتعامل مع نظام Git. راجع <a href='/ar/part0/general_info#المتطلبات-الأساسية'>التفاصيل هنا</a>."
+      ]
+    },
+    {
+      "title": "كيف أسجل في الدورة؟",
+      "text": [
+        "الدورة مفتوحة ومتاحة بالكامل مجاناً للجميع عبر الموقع. يمكنك البدء في قراءة الدروس وإنجاز التمارين مباشرة."
+      ]
+    },
+    {
+      "title": "هل الدورة مجانية؟",
+      "text": [
+        "نعم، الدورة مجانية بالكامل بنسبة 100% ومتاحة كمصدر تعليمي مفتوح."
+      ]
+    },
+    {
+      "title": "كيف يتم تسليم التمارين العملية؟",
+      "text": [
+        "يتم رفع حلول التمارين إلى حسابك على GitHub، وتسجيل الروابط في نظام التسليم المخصص للدورة. اقرأ المزيد في <a href='/ar/part0/general_info'>الجزء 0</a>."
+      ]
+    },
+    {
+      "title": "ما هي التقنيات التي تغطيها الدورة؟",
+      "text": [
+        "تغطي الدورة React, Node.js, Express, MongoDB, PostgreSQL, GraphQL, TypeScript, React Native, CI/CD, Docker, والتكامل المستمر والمزيد."
+      ]
+    },
+    {
+      "title": "هل هناك موعد نهائي محدد لإكمال التمارين؟",
+      "text": [
+        "لا، التقدم في الدورة حر وذاتي ويمكنك التعلّم وفق جدولك الزمني الخاص."
+      ]
+    }
   ]
 }

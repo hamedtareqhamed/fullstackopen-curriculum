@@ -105,5 +105,23 @@
     "houston": "A Houston Inc. é uma empresa finlandesa de software ágil fundada em 2003. Desenvolvemos e implementamos serviços digitais personalizados para nossos clientes.",
     "contacts": ["Full stack open", "matti.luukkainen@helsinki.fi"],
     "licenced": "O material é licenciado sob a Licença Creative Commons BY-NC-SA 3.0."
+  },
+  "ar": {
+    "mainTitle": "تعمّق في تطوير تطبيقات الويب الحديثة",
+    "intro": "تعلّم React و Node.js و MongoDB و GraphQL و TypeScript في مسار عملي متكامل! تقدم لك هذه الدورة دليلاً شاملاً لتطوير تطبيقات الويب الحديثة المبنية على جافاسكريبت، مع التركيز على بناء تطبيقات الصفحة الواحدة (SPA) بواسطة React وربطها بواجهات برمجة التطبيقات REST و GraphQL.",
+    "current": [
+      "<em>لديك أسئلة حول الدورة؟ اقرأ بعناية <a href='/ar/part0/general_info'>الجزء 0</a>، ففيه إجابات لأغلب الأسئلة الشائعة...</em>",
+      "الدورة مستمرة ومحدثة دائماً بدون انقطاع! راجع <a href='/ar/part0/general_info'>الجزء 0</a> للمزيد من التفاصيل.",
+      "يمكنك مناقشة مواضيع الدورة والمشاركة في مجتمع المطورين عبر مجموعة Discord الرسمية: <a target='_blank' href='https://study.cs.helsinki.fi/discord/join/fullstack'>https://study.cs.helsinki.fi/discord/join/fullstack</a>."
+    ],
+    "notice": "ملاحظة: التعليقات غير اللائقة أو المسيئة ممنوعة تماماً في القناة وسيتم استبعاد أي شخص يرسل مثل هذه الرسائل فوراً.",
+    "licence": [
+      "الأجزاء 0-8 و 13 من المادة التعليمية كتبها <a href='https://github.com/mluukkai'>Matti Luukkainen</a>. محتوى الجزء 9 من إعداد مطوري <a href='https://www.terveystalo.com/fi/Yritystietoa/Terveystalo-tyontantajana/Digital-Health/'>Terveystalo</a>. الجزء 10 من إعداد <a href='https://github.com/Kaltsoon'>Kalle Ilves</a>. محتوى الجزء 11 من إعداد مطوري <a href='https://www.smartly.io/'>Smartly</a> والجزء 12 من إعداد <a href='https://github.com/jakousa'>Jami Kousa</a>. ساهم العديد من <a href='https://github.com/fullstack-hy2020/misc/blob/master/contributors.md'>المطورين والمساهمين</a> في تحسين وتدقيق المادة العلمية. موقع الدورة صُمم ونُفّذ بواسطة <a target='_blank' href='https://www.houston-inc.com/'>Houston Inc</a> والتي قامت أيضاً بمراجعة وتدقيق محتوى المنهج.",
+      "المادة التعليمية مرخصة بموجب <a href='https://creativecommons.org/licenses/by-nc-sa/3.0/'>رخصة المشاع الإبداعي Creative Commons BY-NC-SA 3.0</a>، مما يعني أنك حر في استخدام وتوزيع المادة طالما لم يتم حذف أسماء المؤلفين الأصليين. في حال تعديل المادة والرغبة في توزيع النسخة المعدلة، يجب أن تخضع لنفس الرخصة. يُحظر استخدام المادة لأغراض تجارية دون إذن مسبق."
+    ],
+    "university": "جامعة هلسنكي (University of Helsinki) هي أقدم وأكبر جامعة علمية في فنلندا، وتضم مجتمعاً علمياً دولياً يتجاوز 40,000 شخص.",
+    "houston": "شركة Houston Inc. الفنلندية هي شركة رائدة في الحلول البرمجية الرشيقة تأسست عام 2003، وتقوم بتصميم وتنفيذ خدمات رقمية مخصصة.",
+    "contacts": ["Full stack open", "matti.luukkainen@helsinki.fi"],
+    "licenced": "المادة مرخصة بموجب رخصة Creative Commons BY-NC-SA 3.0."
   }
 }
