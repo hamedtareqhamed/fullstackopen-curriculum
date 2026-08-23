@@ -5,7 +5,7 @@ letter: a
 lang: ar
 ---
 
-# معلومات عامة
+<div class="content">
 
 مرحباً بك في دورة **Full Stack Open**.
 
@@ -20,3 +20,5 @@ lang: ar
 - متصفح ويب حديث مثل Chrome أو Firefox مع أدوات المطورين (DevTools).
 - محرر نصوص قوي ومناسب لكتابة الكود مثل Visual Studio Code.
 - تثبيت Node.js و Git على جهازك.
+
+</div>
