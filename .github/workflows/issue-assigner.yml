@@ -43,8 +43,8 @@ jobs:
               labels: ['in progress']
             });
 
-            // 3. كتابة رد ترحيبي وتشجيعي
-            const replyMessage = `مرحباً @${commenter}! 🌟\n\nتم تعيين هذه المهمة لك بنجاح.\n\n**الخطوات التالية:**\n1. افتح صفحة [محرر الماركداون المدمج في المنصة](http://localhost:8000/ar/contribute) للترجمة السريعة.\n2. أو افتح فرعاً محلياً في جهازك وأرسل Pull Request واكتب في الوصف \`Closes #${issueNumber}\` ليتم إغلاق الـ Issue تلقائياً عند دمج التعديلات.\n\nشكراً لمساهمتك القيمة! 🚀`;
+            // 3. كتابة رد ترحيبي وتشجيعي مع رابط صفحة المهام الخاصة بالمستخدم
+            const replyMessage = `مرحباً @${commenter}! 🌟\n\nتم تعيين هذه المهمة لك بنجاح وتم قفلها باسمك.\n\n**الخطوات التالية للبدء بالترجمة:**\n1. توجه مباشرة إلى صفحة مهامك في المنصة للبدء بالتحرير:\n   👉 **[http://localhost:8000/ar/my-tasks](http://localhost:8000/ar/my-tasks)**\n2. أو يمكنك فتح فرع محلي بجهازك وإرسال Pull Request وكتابة \`Closes #${issueNumber}\` في وصف الـ PR ليتم إغلاق الـ Issue تلقائياً عند الدمج.\n\nشكراً لمساهمتك القيمة في إثراء المحتوى العربي! 🚀`;
 
             await github.rest.issues.createComment({
               owner: context.repo.owner,
