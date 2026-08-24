@@ -17,3 +17,4 @@ jobs:
 
       - name: Run translation and glossary linter
         run: node scripts/lint-translation.js
+
