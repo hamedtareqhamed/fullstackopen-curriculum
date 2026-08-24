@@ -153,3 +153,4 @@ my-monorepo/
 4. **الحوسبة السحابية بدون خادم (Serverless Computing & Cloud Functions)**: تشغيل الدوال البرمجية عند الطلب عبر مزودي السحابة (مثل AWS Lambda و Google Cloud Functions).
 
 </div>
+

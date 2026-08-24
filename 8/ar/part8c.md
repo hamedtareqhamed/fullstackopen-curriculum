@@ -154,3 +154,4 @@ const { url } = await startStandaloneServer(server, {
 أضف نموذج المستخدم `User` وطفرة `createUser` وطفرة `login` التي تُرجع رمز JWT. واجعل طفرة إضافة كتاب `addBook` وتعديل المؤلف `editAuthor` متاحة **فقط** للمستخدمين المسجلين المصرح لهم.
 
 </div>
+

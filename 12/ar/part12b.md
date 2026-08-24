@@ -106,3 +106,4 @@ docker run -p 3000:3000 -v $(pwd):/usr/src/app my-node-app npm run dev
 تأكد من نسخ `package.json` وتشغيل `npm install` قبل نسخ باقي الكود لمنع إعادة تثبيت الحزم عند كل تعديل بسيط في الأكواد.
 
 </div>
+

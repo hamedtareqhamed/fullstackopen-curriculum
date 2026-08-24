@@ -1,0 +1,54 @@
+name: Issue Self-Assigner Bot
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  issues: write
+
+jobs:
+  self-assign:
+    runs-on: ubuntu-latest
+    if: "!github.event.issue.pull_request"
+    steps:
+      - name: Check for self-assignment command
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const commentBody = context.payload.comment.body.trim().toLowerCase();
+            const commenter = context.payload.comment.user.login;
+            const issueNumber = context.payload.issue.number;
+
+            const triggerCommands = ['.take', '/claim', '!assign', 'سأقوم بالترجمة', 'سأتكفل بالترجمة'];
+            const isMatch = triggerCommands.some(cmd => commentBody.includes(cmd));
+
+            if (!isMatch) return;
+
+            console.log(`Assigning issue #${issueNumber} to user: ${commenter}`);
+
+            // 1. تعيين المستخدم كـ Assignee
+            await github.rest.issues.addAssignees({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              assignees: [commenter]
+            });
+
+            // 2. تحديث الملصقات
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              labels: ['in progress']
+            });
+
+            // 3. كتابة رد ترحيبي وتشجيعي
+            const replyMessage = `مرحباً @${commenter}! 🌟\n\nتم تعيين هذه المهمة لك بنجاح.\n\n**الخطوات التالية:**\n1. افتح صفحة [محرر الماركداون المدمج في المنصة](http://localhost:8000/ar/contribute) للترجمة السريعة.\n2. أو افتح فرعاً محلياً في جهازك وأرسل Pull Request واكتب في الوصف \`Closes #${issueNumber}\` ليتم إغلاق الـ Issue تلقائياً عند دمج التعديلات.\n\nشكراً لمساهمتك القيمة! 🚀`;
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              body: replyMessage
+            });

@@ -157,3 +157,4 @@ const EntryDetails: React.FC<{ entry: Entry }> = ({ entry }) => {
 هذا هو التمرين الأخير في الجزء التاسع. ارفع حلولك إلى مستودع GitHub وسجل إنجازك في نظام التسليم.
 
 </div>
+

@@ -198,3 +198,4 @@ export const useLocalStorage = (key, initialValue) => {
 أضف دالة لحذف الطرائف `deleteAnecdote`، وأعد هيكلة المكونات بحيث تستدعي `useAnecdotes` مباشرة دون تمرير البيانات والوظائف كـ Props من المكون `App`.
 
 </div>
+

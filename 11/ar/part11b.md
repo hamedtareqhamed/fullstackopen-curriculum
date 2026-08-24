@@ -93,3 +93,4 @@ jobs:
 اضبط قواعد حماية الفرع `main` في إعدادات GitHub بحيث تشترط نجاح مسار عمل GitHub Actions قبل السماح بدمج أي Pull Request.
 
 </div>
+
