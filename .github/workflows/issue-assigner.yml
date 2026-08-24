@@ -1,4 +1,4 @@
-name: Issue Self-Assigner Bot
+name: Issue Self-Assigner & Closer Bot
 
 on:
   issue_comment:
@@ -8,48 +8,83 @@ permissions:
   issues: write
 
 jobs:
-  self-assign:
+  handle-command:
     runs-on: ubuntu-latest
     if: "!github.event.issue.pull_request"
     steps:
-      - name: Check for self-assignment command
+      - name: Process issue comment command
         uses: actions/github-script@v7
         with:
           script: |
-            const commentBody = context.payload.comment.body.trim().toLowerCase();
+            const commentBody = context.payload.comment.body.trim();
+            const commentLower = commentBody.toLowerCase();
             const commenter = context.payload.comment.user.login;
             const issueNumber = context.payload.issue.number;
 
+            // 1. فحص أمر إغلاق المهمة كمنجزة مسبقاً (.close / .already-done / مغلق)
+            const isCloseCommand = commentLower.startsWith('.close') || 
+                                   commentLower.startsWith('.already-done') || 
+                                   commentLower.startsWith('/close') ||
+                                   commentLower.startsWith('منجز مسبقا');
+
+            if (isCloseCommand) {
+              console.log(`Closing issue #${issueNumber} requested by user: ${commenter}`);
+
+              // استخراج السبب المذكور بعد الأمر
+              const parts = commentBody.split(/\s+/);
+              const customReason = parts.slice(1).join(' ') || 'المحتوى معرب ومحدث مسبقاً في المنهج العربي';
+
+              // كتابة تعليق التوثيق
+              const closeComment = `🔒 **تم إغلاق الـ Issue بواسطة @${commenter} دون تعديل في الكود**\n\n**السبب الموثق**: ${customReason}\n\nشكراً لمراجعتك وتدقيقك! ✨`;
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber,
+                body: closeComment
+              });
+
+              // إغلاق الـ Issue
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber,
+                state: 'closed',
+                state_reason: 'not_planned'
+              });
+
+              return;
+            }
+
+            // 2. فحص أمر التكليف الذاتي (.take / /claim / !assign)
             const triggerCommands = ['.take', '/claim', '!assign', 'سأقوم بالترجمة', 'سأتكفل بالترجمة'];
-            const isMatch = triggerCommands.some(cmd => commentBody.includes(cmd));
+            const isTakeMatch = triggerCommands.some(cmd => commentLower.includes(cmd));
 
-            if (!isMatch) return;
+            if (isTakeMatch) {
+              console.log(`Assigning issue #${issueNumber} to user: ${commenter}`);
 
-            console.log(`Assigning issue #${issueNumber} to user: ${commenter}`);
+              // تعيين المستخدم كـ Assignee
+              await github.rest.issues.addAssignees({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber,
+                assignees: [commenter]
+              });
 
-            // 1. تعيين المستخدم كـ Assignee
-            await github.rest.issues.addAssignees({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: issueNumber,
-              assignees: [commenter]
-            });
+              // تحديث الملصقات
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber,
+                labels: ['in progress']
+              });
 
-            // 2. تحديث الملصقات
-            await github.rest.issues.addLabels({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: issueNumber,
-              labels: ['in progress']
-            });
+              // كتابة رد ترحيبي وتشجيعي مع رابط صفحة المهام الخاصة بالمستخدم
+              const replyMessage = `مرحباً @${commenter}! 🌟\n\nتم تعيين هذه المهمة لك بنجاح وتم قفلها باسمك.\n\n**الخطوات التالية للبدء بالترجمة:**\n1. توجه مباشرة إلى صفحة مهامك في المنصة للبدء بالتحرير:\n   👉 **[http://localhost:8000/ar/my-tasks](http://localhost:8000/ar/my-tasks)**\n2. أو يمكنك فتح فرع محلي بجهازك وإرسال Pull Request وكتابة \`Closes #${issueNumber}\` في وصف الـ PR ليتم إغلاق الـ Issue تلقائياً عند الدمج.\n\nشكراً لمساهمتك القيمة في إثراء المحتوى العربي! 🚀`;
 
-            // 3. كتابة رد ترحيبي وتشجيعي مع رابط صفحة المهام الخاصة بالمستخدم
-            const replyMessage = `مرحباً @${commenter}! 🌟\n\nتم تعيين هذه المهمة لك بنجاح وتم قفلها باسمك.\n\n**الخطوات التالية للبدء بالترجمة:**\n1. توجه مباشرة إلى صفحة مهامك في المنصة للبدء بالتحرير:\n   👉 **[http://localhost:8000/ar/my-tasks](http://localhost:8000/ar/my-tasks)**\n2. أو يمكنك فتح فرع محلي بجهازك وإرسال Pull Request وكتابة \`Closes #${issueNumber}\` في وصف الـ PR ليتم إغلاق الـ Issue تلقائياً عند الدمج.\n\nشكراً لمساهمتك القيمة في إثراء المحتوى العربي! 🚀`;
-
-            await github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: issueNumber,
-              body: replyMessage
-            });
-
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber,
+                body: replyMessage
+              });
+            }
